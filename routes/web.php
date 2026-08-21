@@ -3,18 +3,17 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
-// Redirect the home page to the login page.
 Route::get('/', function () {
-    return redirect()->route('login');
+    return view('welcome');
 });
 
 // Protected routes for authenticated users.
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])
+        ->name('dashboard');
 
     // Keep this route before the resource route.
     Route::get('/alumni/export-pdf', [AlumniController::class, 'exportPdf'])

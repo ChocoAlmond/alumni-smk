@@ -9,23 +9,18 @@
 		rel="stylesheet"
 	>
 </head>
-<body class="bg-light">
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-md-5">
-				<div class="card shadow-sm">
-					<div class="card-header text-center bg-primary text-white">
-						<h4 class="mb-0">Login Admin</h4>
-					</div>
-
-					<div class="card-body">
+<body class="login-shell">
+	<div class="login-visual"><a href="{{ url('/') }}" class="admin-brand"><span class="admin-brand-mark">R</span><span>ruang<br>alumni</span></a><div><p class="section-kicker">Portal pengelola · {{ date('Y') }}</p><h1>Yang pernah<br>bertemu, <em>tetap</em><br>terhubung.</h1></div><span class="login-stamp">SMK / 001</span></div>
+	<div class="login-panel">
+		<a href="{{ url('/') }}" class="login-back">← Kembali ke beranda</a>
+		<div class="login-form-wrap"><p class="section-kicker">Selamat datang kembali</p><h2>Masuk ke<br><em>ruangmu.</em></h2>
 						@if ($errors->any())
 							<div class="alert alert-danger">
 								{{ $errors->first() }}
 							</div>
 						@endif
 
-						<form action="{{ route('login.post') }}" method="POST">
+						<form action="{{ route('login.post') }}" method="POST" class="login-form">
 							@csrf
 
 							<div class="mb-3">
@@ -51,14 +46,11 @@
 								>
 							</div>
 
-							<button type="submit" class="btn btn-primary w-100">
-								Login
+							<button type="submit" class="admin-button w-100">
+								Masuk ke dashboard ↗
 							</button>
 						</form>
-					</div>
-				</div>
-			</div>
-		</div>
+		</form></div><p class="login-footnote">Akses khusus pengelola data alumni.<br>Pastikan kredensialmu tetap privat.</p>
 	</div>
 </body>
 </html>

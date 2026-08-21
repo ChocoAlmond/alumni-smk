@@ -1,64 +1,7 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard Sistem Alumni') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h3 class="text-2xl font-bold text-gray-800">
-                        Selamat Datang, {{ Auth::user()->name }}!
-                    </h3>
-                    <p class="text-gray-600 mt-1">
-                        Anda telah masuk ke Sistem Pendataan Alumni SMK. Gunakan menu di bawah untuk mengelola data alumni.
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="p-3 bg-blue-100 text-blue-600 rounded-lg">
-                            </div>
-                            <h4 class="text-lg font-bold text-gray-800">Kelola Data Alumni</h4>
-                        </div>
-                        <p class="text-gray-600 text-sm">
-                            Lihat tabel seluruh data alumni, lakukan pencarian, edit data, atau hapus data alumni.
-                        </p>
-                    </div>
-                    <div class="mt-5">
-                        <a href="{{ route('alumni.index') }}" class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 transition">
-                            Lihat Semua Data &rarr;
-                        </a>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-3 mb-3">
-                            <div class="p-3 bg-green-100 text-green-600 rounded-lg">
-                            </div>
-                            <h4 class="text-lg font-bold text-gray-800">Tambah Alumni Baru</h4>
-                        </div>
-                        <p class="text-gray-600 text-sm">
-                            Inputkan data siswa yang baru lulus ke dalam sistem pendataan alumni SMK.
-                        </p>
-                    </div>
-                    <div class="mt-5">
-                        <a href="{{ route('alumni.create') }}"  class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-700 transition">
-                            + Tambah Alumni
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</x-app-layout>
+@section('content')
+    <div class="admin-heading"><div><p class="section-kicker">Selamat datang kembali</p><h1>Ruang kendali<br><em>alumni.</em></h1><p class="admin-lead">Pantau cerita yang terus bertambah dan jaga koneksi keluarga besar SMK tetap hidup.</p></div><span class="heading-index">01 / 03</span></div>
+    <div class="stats-grid"><div class="stat-card stat-card-accent"><span class="stat-label">Total alumni terdaftar</span><strong>{{ $totalAlumni ?? 0 }}</strong><span class="stat-note">orang dalam direktori</span></div><div class="stat-card"><span class="stat-label">Status sistem</span><strong class="stat-word">Aktif</strong><span class="stat-note"><i class="status-dot"></i> Sinkronisasi berjalan</span></div><div class="stat-card"><span class="stat-label">Periode data</span><strong class="stat-word">2026</strong><span class="stat-note">pembaruan terakhir hari ini</span></div></div>
+    <section class="dashboard-panel"><div><p class="section-kicker">Akses cepat</p><h2>Mulai dari<br><em>yang penting.</em></h2></div><div class="quick-links"><a href="{{ route('alumni.index') }}"><span>01</span><strong>Lihat direktori alumni</strong><b>↗</b></a><a href="{{ route('alumni.create') }}"><span>02</span><strong>Tambah data baru</strong><b>↗</b></a><a href="{{ route('profile.edit') }}"><span>03</span><strong>Perbarui profil</strong><b>↗</b></a></div></section>
+@endsection

@@ -1,10 +1,7 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Edit Data Alumni') }}
-        </h2>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    </x-slot>
+@extends('layouts.app')
+
+@section('content')
+    <h2 class="mb-4">{{ __('Edit Data Alumni') }}</h2>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -52,7 +49,7 @@
                         @if($alumni->foto)
                             <div class="mb-2">
                                 @if(!empty($fotoExists) && $fotoExists)
-                                    <img src="{{ asset('storage/' . ltrim(str_replace('public/', '', $alumni->foto), '/')) }}" width="100" class="img-thumbnail rounded">
+                                    <img src="{{ asset('storage/' . $alumni->foto) }}" width="100" class="img-thumbnail rounded">
                                     <div class="small text-muted mt-1">File: {{ $alumni->foto }}</div>
                                     <div class="small text-muted">Exists in public/storage: yes</div>
                                 @else
@@ -78,7 +75,7 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Tahun Lulus</label>
-                        <input type="number" name="tahun_lulus" class="form-control" value="{{ old('tahun_lulus', $alumni->tahun_lulus) }}" required>
+                        <input type="number" name="tahun_lulus" class="form-control" value="{{ old('tahun_lulus', $alumni->tahun_lulus) }}" min="1901" max="2155" required>
                     </div>
 
                     <div class="mb-3">
@@ -101,4 +98,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection

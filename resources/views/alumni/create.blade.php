@@ -1,10 +1,7 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Tambah Data Alumni') }}
-        </h2>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    </x-slot>
+@extends('layouts.app')
+
+@section('content')
+    <h2 class="mb-4">{{ __('Tambah Data Alumni') }}</h2>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -55,7 +52,7 @@
 
                     <div class="mb-3">
                         <label class="form-label fw-semibold">Tahun Lulus</label>
-                        <input type="number" name="tahun_lulus" class="form-control" value="{{ old('tahun_lulus') }}" placeholder="Contoh: 2024" required>
+                        <input type="number" name="tahun_lulus" class="form-control" value="{{ old('tahun_lulus') }}" placeholder="Contoh: 2024" min="1901" max="2155" required>
                     </div>
 
                     <div class="mb-3">
@@ -78,4 +75,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection

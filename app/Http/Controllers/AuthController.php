@@ -13,15 +13,18 @@ class AuthController extends Controller
     }
     
     public function authenticate(Request $request)
-        {
-        $credentials = $request->validate ([
-           'email' => ['required', 'email'],
-           'password' => ['required'],
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
-             $request->session()->regenerate();
-            return redirect()->intended('/alumni')->with('success', 'Berhasil login!');
+            $request->session()->regenerate();
+
+            return redirect()
+                ->intended('/dashboard')
+                ->with('success', 'Berhasil login!');
         }
 
         return back()->withErrors([

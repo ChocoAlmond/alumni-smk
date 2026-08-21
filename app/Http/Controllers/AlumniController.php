@@ -30,10 +30,18 @@ class AlumniController extends Controller
         $request->validate([
             'nisn' => 'required|unique:alumnis',
             'nama_lengkap' => 'required',
-            'foto' => 'nullable|file|mimes:jpeg,png,jpg|max:5120',
+            // naikkan limit menjadi 5MB (nilai dalam kilobytes untuk Laravel rule 'max')
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'jurusan' => 'required',
-            'tahun_lulus' => 'required',
+            'tahun_lulus' => 'required|integer|between:1901,2155',
             'status' => 'required',
+        ], [
+            'nisn.unique' => 'NISN sudah terdaftar. Gunakan NISN lain.',
+            'foto.image' => 'File foto harus berupa gambar.',
+            'foto.mimes' => 'Foto harus berformat JPG atau PNG.',
+            'foto.max' => 'Ukuran foto maksimal 5 MB.',
+            'tahun_lulus.integer' => 'Tahun lulus harus berupa angka.',
+            'tahun_lulus.between' => 'Tahun lulus harus antara 1901 dan 2155.',
         ]);
 
         $fotoPath = null;
@@ -43,8 +51,7 @@ class AlumniController extends Controller
                 return back()->with('error', 'Foto gagal diunggah. Coba lagi.');
             }
             try {
-                $fotoPathStored = $file->store('alumni', 'public');
-                $fotoPath = str_replace('public/', '', $fotoPathStored);
+                $fotoPath = $file->store('alumni', 'public');
             } catch (\Exception $e) {
                 return back()->with('error', 'Foto gagal diunggah: ' . $e->getMessage());
             }
@@ -67,7 +74,8 @@ class AlumniController extends Controller
         // Periksa apakah file foto ada di disk 'public'
         $fotoExists = false;
         if ($alumnus->foto) {
-            $fotoExists = Storage::disk('public')->exists($alumnus->foto);
+            $fotoPath = ltrim(str_replace('public/', '', $alumnus->foto), '/');
+            $fotoExists = Storage::disk('public')->exists($fotoPath);
         }
 
         return view('alumni.edit', ['alumni' => $alumnus, 'fotoExists' => $fotoExists]);
@@ -78,28 +86,38 @@ class AlumniController extends Controller
         $request->validate([
             'nisn' => 'required|unique:alumnis,nisn,' . $alumnus->id,
             'nama_lengkap' => 'required',
-            'foto' => 'nullable|file|mimes:jpeg,png,jpg|max:5120',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
             'jurusan' => 'required',
-            'tahun_lulus' => 'required',
+            'tahun_lulus' => 'required|integer|between:1901,2155',
             'status' => 'required',
+        ], [
+            'nisn.unique' => 'NISN sudah terdaftar. Gunakan NISN lain.',
+            'foto.image' => 'File foto harus berupa gambar.',
+            'foto.mimes' => 'Foto harus berformat JPG atau PNG.',
+            'foto.max' => 'Ukuran foto maksimal 5 MB.',
+            'tahun_lulus.integer' => 'Tahun lulus harus berupa angka.',
+            'tahun_lulus.between' => 'Tahun lulus harus antara 1901 dan 2155.',
         ]);
 
+        // Pertahankan foto lama secara default
         $fotoPath = $alumnus->foto;
-        $fotoPath = str_replace('public/', '', $fotoPath ?? '');
 
+        // Jika user memilih file foto baru saat edit
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             if (!$file->isValid()) {
                 return back()->with('error', 'Foto gagal diunggah. Coba lagi.');
             }
 
-            if ($alumnus->foto && Storage::disk('public')->exists(str_replace('public/', '', $alumnus->foto))) {
-                Storage::disk('public')->delete(str_replace('public/', '', $alumnus->foto));
+            // Hapus foto lama jika ada
+            $oldFotoPath = ltrim(str_replace('public/', '', $alumnus->foto ?? ''), '/');
+            if ($oldFotoPath && Storage::disk('public')->exists($oldFotoPath)) {
+                Storage::disk('public')->delete($oldFotoPath);
             }
 
+            // Simpan foto baru dengan try/catch
             try {
-                $newFoto = $file->store('alumni', 'public');
-                $fotoPath = str_replace('public/', '', $newFoto);
+                $fotoPath = $file->store('alumni', 'public');
             } catch (\Exception $e) {
                 return back()->with('error', 'Foto gagal diunggah: ' . $e->getMessage());
             }
@@ -120,10 +138,9 @@ class AlumniController extends Controller
 
     public function destroy(Alumni $alumnus)
     {
-        $fotoRelative = str_replace('public/', '', $alumnus->foto ?? '');
-
-        if ($fotoRelative && Storage::disk('public')->exists($fotoRelative)) {
-            Storage::disk('public')->delete($fotoRelative);
+        $fotoPath = ltrim(str_replace('public/', '', $alumnus->foto ?? ''), '/');
+        if ($fotoPath && Storage::disk('public')->exists($fotoPath)) {
+            Storage::disk('public')->delete($fotoPath);
         }
 
         $alumnus->delete();
