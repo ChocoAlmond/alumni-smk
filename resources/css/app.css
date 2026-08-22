@@ -338,6 +338,199 @@ body {
         transform: translateX(-25%);
     }
 }
+
+/* Authentication */
+.auth-shell {
+    min-height: 100vh;
+    background:
+        linear-gradient(135deg, rgba(239, 114, 95, 0.08), transparent 38%),
+        var(--paper);
+}
+.auth-header {
+    padding-bottom: 18px;
+}
+.auth-back-link {
+    color: var(--muted);
+    font: 10px var(--mono);
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+}
+.auth-back-link span {
+    color: var(--coral);
+    margin-left: 8px;
+}
+.auth-back-link:hover {
+    color: var(--coral);
+}
+.auth-main {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(420px, 1fr);
+    gap: 8vw;
+    align-items: center;
+    max-width: 1240px;
+    min-height: calc(100vh - 145px);
+    margin: 0 auto;
+    padding: 50px 5vw 80px;
+}
+.auth-intro {
+    animation: auth-rise 0.65s ease both;
+}
+.auth-intro .eyebrow {
+    margin-bottom: 48px;
+}
+.auth-intro h1 {
+    font-size: clamp(72px, 9vw, 128px);
+    line-height: 0.78;
+    margin: 0;
+}
+.auth-intro p:last-child {
+    max-width: 300px;
+    margin: 48px 0 0 14%;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+.auth-panel {
+    width: 100%;
+    max-width: 510px;
+    justify-self: end;
+    padding: 30px 34px 36px;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--line);
+    animation: auth-rise 0.65s 0.12s ease both;
+}
+.auth-panel-heading {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 44px;
+    color: var(--ink);
+    font: 11px var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+.auth-panel-index {
+    color: var(--coral);
+}
+.auth-panel form > div {
+    margin-top: 24px;
+}
+.auth-panel form > div:first-child {
+    margin-top: 0;
+}
+.auth-panel label {
+    display: block;
+    margin-bottom: 9px;
+    color: var(--muted);
+    font: 10px var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+.auth-panel input:not([type="checkbox"]) {
+    width: 100%;
+    padding: 11px 0;
+    border: 0;
+    border-bottom: 1px solid var(--line);
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--ink);
+    font: 18px var(--serif);
+    box-shadow: none;
+}
+.auth-panel input:not([type="checkbox"]):focus {
+    border-color: var(--coral);
+    box-shadow: 0 1px 0 var(--coral);
+}
+.auth-panel input[type="checkbox"] {
+    accent-color: var(--coral);
+}
+.auth-panel .text-red-600 {
+    margin-top: 7px;
+    color: #ad463a;
+    font: 10px/1.5 var(--mono);
+}
+.auth-panel .flex.items-center.justify-end {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 38px;
+}
+.auth-panel .underline {
+    color: var(--muted);
+    font: 10px var(--mono);
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.auth-panel .underline:hover {
+    color: var(--coral);
+}
+.auth-panel button {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--ink);
+    color: var(--chalk);
+    font: 10px var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+.auth-panel button:hover {
+    background: var(--coral);
+    color: var(--ink);
+    transform: translateY(-2px);
+}
+.auth-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 5vw 24px;
+    color: var(--muted);
+    font: 10px var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+@keyframes auth-rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@media (max-width: 700px) {
+    .auth-header {
+        padding: 22px 7vw;
+    }
+    .auth-back-link {
+        font-size: 9px;
+    }
+    .auth-main {
+        display: block;
+        min-height: 0;
+        padding: 42px 7vw 60px;
+    }
+    .auth-intro .eyebrow {
+        margin-bottom: 36px;
+    }
+    .auth-intro h1 {
+        font-size: clamp(64px, 19vw, 100px);
+    }
+    .auth-intro p:last-child {
+        margin: 34px 0 52px;
+    }
+    .auth-panel {
+        max-width: none;
+        padding: 25px 0 30px;
+    }
+    .auth-footer {
+        display: block;
+        padding: 0 7vw 22px;
+        line-height: 1.8;
+    }
+    .auth-footer span {
+        display: block;
+    }
+}
 .manifesto-section,
 .directory-section,
 .story-section {

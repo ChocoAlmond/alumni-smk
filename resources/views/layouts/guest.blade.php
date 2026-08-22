@@ -7,24 +7,43 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    <body class="site-shell auth-shell">
+        <div class="grain" aria-hidden="true"></div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <header class="site-header auth-header">
+            <a href="{{ url('/') }}" class="wordmark" aria-label="Ruang Alumni beranda">
+                <span class="wordmark-mark">R</span>
+                <span>ruang<br>alumni</span>
+            </a>
+            <a href="{{ url('/') }}" class="auth-back-link">Kembali ke beranda <span>↗</span></a>
+        </header>
+
+        <main class="auth-main">
+            <section class="auth-intro">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> ruang alumni · 2026</p>
+                @if (request()->routeIs('register'))
+                    <h1>Mulai<br><em>terhubung.</em></h1>
+                    <p>Tambahkan namamu ke dalam arsip yang terus hidup.</p>
+                @else
+                    <h1>Selamat<br><em>datang lagi.</em></h1>
+                    <p>Temukan kembali cerita, kabar, dan orang-orangmu.</p>
+                @endif
+            </section>
+
+            <section class="auth-panel">
+                <div class="auth-panel-heading">
+                    <span>{{ request()->routeIs('register') ? 'Daftar anggota' : 'Masuk ke ruang' }}</span>
+                    <span class="auth-panel-index">/ {{ request()->routeIs('register') ? '02' : '01' }}</span>
+                </div>
                 {{ $slot }}
-            </div>
-        </div>
+            </section>
+        </main>
+
+        <footer class="auth-footer">
+            <span>sebuah arsip kecil untuk langkah yang panjang.</span>
+            <span>SMK / alumni</span>
+        </footer>
     </body>
 </html>
