@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ruang temu alumni SMK untuk menemukan cerita, karya, dan koneksi baru.">
-    <title>Ruang Alumni | SMK</title>
+    <title>Ruang Alumni SMKN 1 Pedan</title>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -14,7 +14,7 @@
     <header class="site-header">
         <a href="{{ url('/') }}" class="wordmark" aria-label="Ruang Alumni beranda">
             <span class="wordmark-mark">R</span>
-            <span>ruang<br>alumni</span>
+            <span>ruang<br>alumni<br>smkn 1 pedan</span>
         </a>
 
         <nav class="main-nav" aria-label="Navigasi utama">
@@ -38,9 +38,9 @@
     <main>
         <section class="hero-section">
             <div class="hero-copy">
-                <p class="eyebrow"><span class="eyebrow-dot"></span> arsip yang terus hidup · 2026</p>
+                <p class="eyebrow"><span class="eyebrow-dot"></span> smkn 1 pedan · arsip yang terus hidup</p>
                 <h1>Tempat<br>kita <em>bertemu</em><span class="scribble">lagi.</span></h1>
-                <p class="hero-intro">Ruang untuk menyimpan langkah, menemukan kabar, dan membuka percakapan baru bersama keluarga besar SMK.</p>
+                <p class="hero-intro">Ruang untuk menyimpan langkah, menemukan kabar, dan membuka percakapan baru bersama keluarga besar SMKN 1 Pedan.</p>
                 <div class="hero-actions">
                     <a href="#jelajah" class="pill-button">Jelajahi alumni <span>↗</span></a>
                     <a href="#tentang" class="circle-link" aria-label="Scroll ke bagian tentang">↓</a>
@@ -111,11 +111,11 @@
 
     <footer class="site-footer">
         <div class="footer-top">
-            <a href="{{ url('/') }}" class="wordmark wordmark-footer"><span class="wordmark-mark">R</span><span>ruang<br>alumni</span></a>
+            <a href="{{ url('/') }}" class="wordmark wordmark-footer"><span class="wordmark-mark">R</span><span>ruang<br>alumni<br>smkn 1 pedan</span></a>
             <p>sebuah arsip kecil<br>untuk langkah yang panjang.</p>
             <a href="{{ route('login') }}" class="pill-button">Masuk ke ruang <span>↗</span></a>
         </div>
-        <div class="footer-bottom"><span>© {{ date('Y') }} Ruang Alumni SMK</span><span>dibuat untuk tetap terhubung.</span></div>
+        <div class="footer-bottom"><span>© {{ date('Y') }} Ruang Alumni SMKN 1 Pedan</span><span>dibuat untuk tetap terhubung.</span></div>
     </footer>
 </body>
 </html>
