@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Exceptions\PostTooLargeException;
 use Illuminate\Http\Request;
 
@@ -16,6 +17,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->render(function (QueryException $exception, Request $request) {
+            if ($request->expectsJson()) {
+                return null;
+            }
+
+            return response()->view('errors.500', status: 500);
+        });
+
         $exceptions->render(function (PostTooLargeException $exception, Request $request) {
             if ($request->is('alumni*') && $request->isMethod('post')) {
                 return back()->withInput()->withErrors([

@@ -8,19 +8,19 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="site-shell">
+<body class="site-shell hld-home">
     <div class="grain" aria-hidden="true"></div>
 
-    <header class="site-header">
-        <a href="{{ url('/') }}" class="wordmark" aria-label="Ruang Alumni beranda">
+    <header class="site-header hld-header">
+        <a href="{{ url('/') }}" class="wordmark hld-wordmark" aria-label="Ruang Alumni beranda">
             <span class="wordmark-mark">R</span>
-            <span>ruang<br>alumni<br>smkn 1 pedan</span>
+            <span>ruang alumni<br><b>smkn 1 pedan</b></span>
         </a>
 
         <nav class="main-nav" aria-label="Navigasi utama">
-            <a href="#tentang">Tentang</a>
-            <a href="#cerita">Cerita</a>
-            <a href="#jelajah">Jelajah</a>
+            <a href="#tentang">Tentang kami</a>
+            <a href="#jelajah">Direktori alumni</a>
+            <a href="#cerita">Kabar alumni</a>
         </nav>
 
         <div class="header-actions">
@@ -29,93 +29,80 @@
             @else
                 <a href="{{ route('login') }}" class="text-link">Masuk</a>
                 @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="pill-button pill-button-small">Daftar <span>↗</span></a>
+                    <a href="{{ route('register') }}" class="pill-button pill-button-small">Bergabung <span>↗</span></a>
                 @endif
             @endauth
         </div>
     </header>
 
     <main>
-        <section class="hero-section">
-            <div class="hero-copy">
-                <p class="eyebrow"><span class="eyebrow-dot"></span> smkn 1 pedan · arsip yang terus hidup</p>
-                <h1>Tempat<br>kita <em>bertemu</em><span class="scribble">lagi.</span></h1>
-                <p class="hero-intro">Ruang untuk menyimpan langkah, menemukan kabar, dan membuka percakapan baru bersama keluarga besar SMKN 1 Pedan.</p>
-                <div class="hero-actions">
-                    <a href="#jelajah" class="pill-button">Jelajahi alumni <span>↗</span></a>
-                    <a href="#tentang" class="circle-link" aria-label="Scroll ke bagian tentang">↓</a>
-                </div>
+        <section class="hld-hero">
+            <div class="hld-hero-image" aria-hidden="true"></div>
+            <div class="hld-hero-overlay"></div>
+            <div class="hld-hero-content">
+                <p class="eyebrow"><span class="eyebrow-dot"></span> arsip alumni · sejak 1965</p>
+                <h1>Tumbuh<br><em>bersama.</em></h1>
+                <p class="hero-intro">Ruang temu keluarga besar SMKN 1 Pedan untuk mengenang yang telah lewat, merayakan hari ini, dan membangun langkah berikutnya.</p>
+                <a href="#tentang" class="hero-discover">Temukan cerita kami <span>↓</span></a>
             </div>
-
-            <div class="hero-art" aria-label="Kolase foto alumni">
-                <div class="hero-orbit orbit-one"></div>
-                <div class="hero-orbit orbit-two"></div>
-                <div class="photo-card photo-main">
-                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=900&q=85" alt="Sekelompok teman tersenyum bersama">
-                    <span class="photo-label">angkatan<br>yang sama</span>
-                </div>
-                <div class="photo-card photo-small">
-                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=500&q=85" alt="Teman-teman duduk berbincang">
-                </div>
-                <div class="note note-star">✳</div>
-                <div class="note note-caption">berangkat<br>dari sini <span>↘</span></div>
-            </div>
+            <div class="hero-meta"><span>01</span><i></i><span>03</span></div>
+            <div class="hero-location">Klaten, Jawa Tengah<br><span>Indonesia</span></div>
         </section>
 
-        <div class="ticker" aria-label="Kabar komunitas">
-            <div class="ticker-track">
-                <span>cerita baru</span><b>✳</b><span>koneksi lama</span><b>✳</b><span>langkah berikutnya</span><b>✳</b><span>cerita baru</span><b>✳</b><span>koneksi lama</span>
-            </div>
-        </div>
-
-        <section class="manifesto-section" id="tentang">
-            <div class="section-index">01 <span>/</span> ruang ini</div>
-            <div class="manifesto-content">
-                <p class="section-kicker">Lebih dari sekadar daftar nama</p>
-                <h2>Karena setiap<br>nama punya <em>cerita.</em></h2>
-                <div class="manifesto-detail">
-                    <p>Di sini, masa lalu tidak berhenti sebagai kenangan. Ia menjadi titik temu untuk kolaborasi, kabar baik, dan ide-ide yang belum pernah kita bayangkan.</p>
-                    <a href="#cerita" class="underline-link">Baca cerita mereka <span>↗</span></a>
+        <section class="hld-intro" id="tentang">
+            <div class="section-index">01 <span>/</span> tentang ruang ini</div>
+            <div class="hld-intro-main">
+                <p class="section-kicker">Masa lalu yang menghubungkan</p>
+                <h2>Satu sekolah.<br><em>Ribuan perjalanan.</em></h2>
+                <div class="hld-intro-detail">
+                    <p>Alumni SMKN 1 Pedan bukan sekadar daftar nama. Kami adalah jaringan cerita, keahlian, dan kepedulian yang terus bergerak lintas angkatan.</p>
+                    <a href="#jelajah" class="underline-link">Jelajahi komunitas <span>↗</span></a>
                 </div>
             </div>
         </section>
 
-        <section class="directory-section" id="jelajah">
+        <section class="hld-stats" aria-label="Data komunitas alumni">
+            <div><strong>40+</strong><span>tahun cerita</span></div>
+            <div><strong>1.2K</strong><span>alumni terhubung</span></div>
+            <div><strong>18</strong><span>jurusan & keahlian</span></div>
+            <div><strong>∞</strong><span>kemungkinan baru</span></div>
+        </section>
+
+        <section class="hld-directory" id="jelajah">
             <div class="directory-heading">
                 <div>
-                    <p class="section-kicker">Indeks / 001—∞</p>
-                    <h2>Temukan<br><em>orang-orangmu.</em></h2>
+                    <p class="section-kicker">02 / direktori alumni</p>
+                    <h2>Wajah di balik<br><em>perjalanan.</em></h2>
                 </div>
                 <a href="{{ route('login') }}" class="arrow-button" aria-label="Buka direktori alumni">↗</a>
             </div>
-
             <div class="directory-list">
-                <div class="directory-row directory-row-head"><span>nama</span><span>jurusan</span><span>angkatan</span><span></span></div>
-                <div class="directory-row"><strong>01</strong><span class="directory-name">Nadia Prameswari</span><span>Rekayasa Perangkat Lunak</span><span>2018</span><span>↗</span></div>
-                <div class="directory-row"><strong>02</strong><span class="directory-name">Rizky Ramadhan</span><span>Teknik Kendaraan Ringan</span><span>2019</span><span>↗</span></div>
-                <div class="directory-row"><strong>03</strong><span class="directory-name">Salsa Maharani</span><span>Akuntansi & Keuangan</span><span>2020</span><span>↗</span></div>
-                <div class="directory-row"><strong>04</strong><span class="directory-name">Bagas Aditya</span><span>Teknik Audio Video</span><span>2021</span><span>↗</span></div>
+                <div class="directory-row directory-row-head"><span>alumni</span><span>bidang</span><span>angkatan</span><span></span></div>
+                <div class="directory-row"><strong>01</strong><span class="directory-name">Nadia Prameswari</span><span>Teknologi & Produk</span><span>2018</span><span>↗</span></div>
+                <div class="directory-row"><strong>02</strong><span class="directory-name">Rizky Ramadhan</span><span>Otomotif</span><span>2019</span><span>↗</span></div>
+                <div class="directory-row"><strong>03</strong><span class="directory-name">Salsa Maharani</span><span>Keuangan</span><span>2020</span><span>↗</span></div>
             </div>
-            <p class="directory-footnote">* Data yang tampil adalah cuplikan. Masuk untuk melihat direktori lengkap.</p>
+            <p class="directory-footnote">* Masuk untuk mengakses direktori lengkap alumni.</p>
         </section>
 
-        <section class="story-section" id="cerita">
-            <div class="story-quote">“</div>
-            <div>
-                <p class="section-kicker">Catatan dari ruang ini</p>
-                <blockquote>Yang membuat sekolah berarti bukan hanya tempatnya, tapi orang-orang yang kita bawa setelahnya.</blockquote>
-                <p class="quote-author">— untuk semua yang pernah mengenakan seragam yang sama</p>
+        <section class="hld-story" id="cerita">
+            <div class="hld-story-image" aria-hidden="true"></div>
+            <div class="hld-story-copy">
+                <p class="section-kicker">03 / kabar alumni</p>
+                <h2>Yang baik<br><em>diteruskan.</em></h2>
+                <p>Temukan kabar, kolaborasi, dan pencapaian dari orang-orang yang pernah berjalan di koridor yang sama.</p>
+                <a href="{{ route('login') }}" class="underline-link">Lihat semua kabar <span>↗</span></a>
             </div>
         </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer hld-footer">
         <div class="footer-top">
-            <a href="{{ url('/') }}" class="wordmark wordmark-footer"><span class="wordmark-mark">R</span><span>ruang<br>alumni<br>smkn 1 pedan</span></a>
-            <p>sebuah arsip kecil<br>untuk langkah yang panjang.</p>
+            <a href="{{ url('/') }}" class="wordmark wordmark-footer"><span class="wordmark-mark">R</span><span>ruang alumni<br><b>smkn 1 pedan</b></span></a>
+            <p>Terhubung oleh masa lalu.<br>Bergerak untuk masa depan.</p>
             <a href="{{ route('login') }}" class="pill-button">Masuk ke ruang <span>↗</span></a>
         </div>
-        <div class="footer-bottom"><span>© {{ date('Y') }} Ruang Alumni SMKN 1 Pedan</span><span>dibuat untuk tetap terhubung.</span></div>
+        <div class="footer-bottom"><span>© {{ date('Y') }} Ruang Alumni SMKN 1 Pedan</span><span>Klaten · Indonesia</span></div>
     </footer>
 </body>
 </html>
